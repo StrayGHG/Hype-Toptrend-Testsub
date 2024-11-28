@@ -182,31 +182,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navItems = document.querySelector('.nav-items');
     const overlay = document.querySelector('.mobile-overlay');
+    const mobileCloseBtn = document.querySelector('.mobile-close'); 
     const body = document.body;
 
-    // Toggle menu
-    hamburger?.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navItems.classList.toggle('active');
-        overlay.classList.toggle('active');
-        body.style.overflow = navItems.classList.contains('active') ? 'hidden' : '';
-    });
-
-    // Close menu when clicking overlay
-    overlay?.addEventListener('click', () => {
+    function closeMenu() {
         hamburger.classList.remove('active');
         navItems.classList.remove('active');
         overlay.classList.remove('active');
         body.style.overflow = '';
+    }
+
+    function openMenu() {
+        hamburger.classList.add('active');
+        navItems.classList.add('active');
+        overlay.classList.add('active');
+        body.style.overflow = 'hidden';
+    }
+
+    // Toggle menu
+    hamburger?.addEventListener('click', () => {
+        if (navItems.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
+
+    // Close menu when clicking overlay
+    overlay?.addEventListener('click', closeMenu);
+
+    // Close menu when clicking close button
+    closeBtn?.addEventListener('click', closeMenu);
 
     // Close menu when clicking links
     navItems?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navItems.classList.remove('active');
-            overlay.classList.remove('active');
-            body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu when pressing Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navItems.classList.contains('active')) {
+            closeMenu();
+        }
     });
 });
