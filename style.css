@@ -1800,74 +1800,88 @@ h2, h3, p {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-.mobile-menu-content {
-    background: rgba(74, 21, 75, 0.95);
-    padding: 2rem;
-    border-radius: 15px;
-    position: relative;
-    width: 90%;
-    max-width: 300px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: modalPop 0.3s ease;
-}
-
-@keyframes modalPop {
-    0% {
-        transform: scale(0.95);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.mobile-menu-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    line-height: 1;
-    z-index: 1002;
-    width: 40px;
-    height: 40px;
-    display: flex;
+    padding: 20px;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.mobile-menu-close:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #9c27b0;
-}
-
-.mobile-menu-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
 }
 
 .mobile-menu-modal.active {
     display: flex;
+}
+
+.mobile-menu-content {
+    background: rgba(74, 21, 75, 0.95);
+    padding: 2.5rem 1.5rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 300px;
+    position: relative;
+    animation: modalPop 0.3s ease;
+}
+
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mobile-menu-items a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mobile-menu-items a i {
+    font-size: 1.1rem;
+}
+
+/* Login button specific style */
+.mobile-menu-items .mobile-auth-item {
+    background: rgba(156, 39, 176, 0.2);
+    border: 1px solid rgba(156, 39, 176, 0.5);
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+@keyframes modalPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .mobile-menu-modal {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
 }
