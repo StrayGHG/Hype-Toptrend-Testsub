@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Hype-Toptrend</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="mesh-gradient"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <h1>Hype-Toptrend</h1>
+        </div>
+        
+        <!-- Hamburger Menu Button -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-items">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="#contact">Contact</a>
+            <a href="cart.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <!-- Auth button will be added dynamically -->
+        </div>
+    </nav>
+
+    <!-- Login/Register Container -->
+    <div class="auth-container">
+        <!-- Login Box -->
+        <div class="auth-box" id="loginBox">
+            <h2>Welcome Back</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" name="email" placeholder=" " required>
+                    <label for="loginEmail">Email</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" name="password" placeholder=" " required>
+                    <label for="loginPassword">Password</label>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+            <p class="switch-form">
+                Don't have an account? <a href="#" id="showRegister">Register</a>
+            </p>
+        </div>
+
+        <!-- Register Box -->
+        <div class="auth-box hidden" id="registerBox">
+            <h2>Create Account</h2>
+            <form id="registerForm">
+                <div class="profile-upload">
+                    <div class="profile-preview">
+                        <img src="images/default-avatar.png" alt="Profile Preview" id="profilePreview">
+                        <div class="upload-overlay">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    <input type="file" id="profilePicture" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="registerName" name="name" placeholder=" " required>
+                    <label for="registerName">Full Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" name="email" placeholder=" " required>
+                    <label for="registerEmail">Email</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" name="password" placeholder=" " required>
+                    <label for="registerPassword">Password</label>
+                </div>
+                <button type="submit" class="auth-button">Register</button>
+            </form>
+            <p class="switch-form">
+                Already have an account? <a href="#" id="showLogin">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+    <!-- Your scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Success Modal -->
+    <div class="success-modal hidden">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Registration Successful!</h3>
+            <p>Your account has been created successfully.</p>
+            <button class="continue-shopping">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Login Success Modal -->
+    <div class="login-success-modal hidden">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Login Successful!</h3>
+            <p>Welcome back!</p>
+            <button class="continue-shopping">Continue Shopping</button>
+        </div>
+    </div>
+</body>
+</html> 

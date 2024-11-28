@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Hype-Toptrend</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>Hype-Toptrend</h1>
+        </div>
+        
+        <!-- Hamburger Menu Button -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-items">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="#contact">Contact</a>
+            <a href="cart.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <!-- Auth button will be added dynamically -->
+        </div>
+    </nav>
+
+    <main class="products-container">
+        <aside class="filters">
+            <h3>Filters</h3>
+            <div class="filter-section">
+                <h4>Categories</h4>
+                <label><input type="checkbox" value="hoodies"> Hoodies</label>
+                <label><input type="checkbox" value="sneakers"> Sneakers</label>
+                <label><input type="checkbox" value="tshirts"> T-Shirts</label>
+            </div>
+            <div class="filter-section">
+                <h4>Price Range</h4>
+                <input type="range" min="0" max="200" value="200" class="price-range">
+                <div class="price-values">
+                    <span>$0</span>
+                    <span class="price-value">$200</span>
+                </div>
+            </div>
+            <button class="apply-filters">Apply Filters</button>
+        </aside>
+
+        <section class="products-grid">
+            <!-- Products will be dynamically added here -->
+        </section>
+    </main>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+    <!-- Your scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>
