@@ -264,4 +264,67 @@ document.addEventListener('DOMContentLoaded', () => {
             closeMenu();
         }
     });
+
+    // Get all necessary elements
+    // Rename variables to avoid redeclaration
+    const hamburgerBtn = document.querySelector('.hamburger');
+    const mobileMenuModal = document.querySelector('.mobile-menu-modal');
+    const closeButton = document.querySelector('.mobile-menu-close');
+    const bodyElement = document.body;
+
+    // Function to open menu
+    function openMenu() {
+        if (mobileMenu) {
+            mobileMenu.classList.add('active');
+            body.style.overflow = 'hidden';
+        }
+    }
+
+    // Function to close menu
+    function closeMenu() {
+        if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+            body.style.overflow = '';
+        }
+    }
+
+    // Hamburger click event
+    if (hamburger) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openMenu();
+        });
+    }
+
+    // Close button click event
+    if (closeButton) {
+        closeButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeMenu();
+        });
+    }
+
+    // Close when clicking outside the menu
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMenu();
+            }
+        });
+    }
+
+    // Close when clicking menu items
+    const menuItems = document.querySelectorAll('.mobile-menu-items a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMenu();
+        }
+    });
 });
