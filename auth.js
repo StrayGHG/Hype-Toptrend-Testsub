@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 dropdown.classList.remove('show');
             });
 
+            
+
             // Handle avatar change
             const changeAvatarBtn = dropdown.querySelector('#changeAvatar');
             changeAvatarBtn.addEventListener('click', (e) => {

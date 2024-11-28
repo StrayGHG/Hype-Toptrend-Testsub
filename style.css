@@ -1802,15 +1802,12 @@ h2, h3, p {
     z-index: 1000;
     justify-content: center;
     align-items: center;
-}
-
-.mobile-menu-modal.active {
-    display: flex;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .mobile-menu-content {
     background: rgba(74, 21, 75, 0.95);
-    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 15px;
     position: relative;
@@ -1849,7 +1846,6 @@ h2, h3, p {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 10px;
 }
 
 .mobile-menu-items a {
@@ -1861,74 +1857,28 @@ h2, h3, p {
     border-radius: 8px;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.mobile-menu-items a:hover {
-    background: rgba(156, 39, 176, 0.3);
-    transform: translateY(-2px);
+.mobile-menu-items a i {
+    font-size: 1rem;
 }
 
-/* Show hamburger only on mobile */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-items {
-        display: none;
-    }
-}
-
-/* Mobile Menu Auth Styles */
 .mobile-auth-item {
     background: rgba(156, 39, 176, 0.2) !important;
     border: 1px solid rgba(156, 39, 176, 0.5);
 }
 
-.mobile-profile-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.mobile-profile-info img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.mobile-profile-dropdown {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.mobile-dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
-.mobile-dropdown-item:hover {
-    background: rgba(156, 39, 176, 0.3);
-}
-
-.mobile-dropdown-item i {
-    width: 20px;
-    text-align: center;
-}
-
-/* Adjust spacing for auth item */
-.mobile-menu-items .mobile-auth-item {
-    margin-top: 10px;
+/* Ensure proper display on iOS */
+@supports (-webkit-touch-callout: none) {
+    .mobile-menu-modal {
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .mobile-menu-content {
+        background: rgb(74, 21, 75);
+    }
 }
