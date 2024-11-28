@@ -129,6 +129,88 @@ document.addEventListener('DOMContentLoaded', () => {
                 navItems.appendChild(loginButton);
             }
         }
+
+        // Update mobile menu items
+        const mobileMenuItems = document.querySelector('.mobile-menu-items');
+        if (mobileMenuItems) {
+            // Remove existing auth button if it exists
+            const existingAuthButton = mobileMenuItems.querySelector('.mobile-auth-item');
+            if (existingAuthButton) {
+                existingAuthButton.remove();
+            }
+
+            if (user) {
+                // Add profile button to mobile menu
+                const profileItem = document.createElement('a');
+                profileItem.href = '#';
+                profileItem.className = 'mobile-auth-item mobile-profile-item';
+                profileItem.innerHTML = `
+                    <div class="mobile-profile-info">
+                        <img src="${user.photoURL || 'images/default-avatar.png'}" alt="Profile">
+                        <span>My Profile</span>
+                    </div>
+                    <div class="mobile-profile-dropdown">
+                        <a href="#" class="mobile-dropdown-item" id="mobileChangeAvatar">
+                            <i class="fas fa-camera"></i>
+                            Change Avatar
+                        </a>
+                        <a href="#" class="mobile-dropdown-item" id="mobileLogout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                    </div>
+                `;
+                mobileMenuItems.appendChild(profileItem);
+
+                // Handle mobile logout
+                const mobileLogoutBtn = document.getElementById('mobileLogout');
+                mobileLogoutBtn?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    firebase.auth().signOut().then(() => {
+                        localStorage.clear();
+                        window.location.href = 'login.html';
+                    }).catch(console.error);
+                });
+
+                // Handle mobile avatar change
+                const mobileChangeAvatarBtn = document.getElementById('mobileChangeAvatar');
+                mobileChangeAvatarBtn?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.click();
+                    
+                    input.onchange = (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                            const storageRef = firebase.storage().ref();
+                            const avatarRef = storageRef.child(`avatars/${user.uid}`);
+                            
+                            avatarRef.put(file).then(() => {
+                                return avatarRef.getDownloadURL();
+                            }).then((url) => {
+                                return user.updateProfile({
+                                    photoURL: url
+                                });
+                            }).then(() => {
+                                window.location.reload();
+                            }).catch(console.error);
+                        }
+                    };
+                });
+            } else {
+                // Add login button to mobile menu
+                const loginItem = document.createElement('a');
+                loginItem.href = 'login.html';
+                loginItem.className = 'mobile-auth-item';
+                loginItem.innerHTML = `
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                `;
+                mobileMenuItems.appendChild(loginItem);
+            }
+        }
     });
 
     // Profile picture preview functionality
