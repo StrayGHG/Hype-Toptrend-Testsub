@@ -181,30 +181,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Functionality
     const hamburger = document.querySelector('.hamburger');
     const navItems = document.querySelector('.nav-items');
+    const overlay = document.querySelector('.mobile-overlay');
     const body = document.body;
 
+    // Toggle menu
     hamburger?.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navItems.classList.toggle('active');
+        overlay.classList.toggle('active');
         body.style.overflow = navItems.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger?.contains(e.target) && 
-            !navItems?.contains(e.target) && 
-            navItems?.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navItems.classList.remove('active');
-            body.style.overflow = '';
-        }
+    // Close menu when clicking overlay
+    overlay?.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navItems.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
     });
 
-    // Close menu when clicking a link
+    // Close menu when clicking links
     navItems?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navItems.classList.remove('active');
+            overlay.classList.remove('active');
             body.style.overflow = '';
         });
     });
