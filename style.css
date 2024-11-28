@@ -1800,82 +1800,68 @@ h2, h3, p {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .mobile-menu-modal.active {
-    display: block;
+    display: flex;
 }
 
 .mobile-menu-content {
     background: rgba(74, 21, 75, 0.95);
-    padding: 2.5rem 1.5rem;
+    padding: 2rem;
     border-radius: 15px;
+    position: relative;
     width: 90%;
     max-width: 300px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     animation: modalPop 0.3s ease;
 }
 
 .mobile-menu-items {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
 .mobile-menu-items a {
     color: #fff;
     text-decoration: none;
     font-size: 1.1rem;
-    padding: 15px 20px;
+    padding: 12px;
     text-align: center;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.mobile-menu-items a:active {
+.mobile-menu-items a:hover {
     background: rgba(255, 255, 255, 0.2);
-}
-
-/* Login button specific style */
-.mobile-menu-items .mobile-auth-item {
-    background: rgba(156, 39, 176, 0.2);
-    border: 1px solid rgba(156, 39, 176, 0.5);
 }
 
 .mobile-menu-close {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
     color: #fff;
     font-size: 24px;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    color: #9c27b0;
 }
 
 @keyframes modalPop {
     0% {
+        transform: scale(0.95);
         opacity: 0;
-        transform: translate(-50%, -45%);
     }
     100% {
+        transform: scale(1);
         opacity: 1;
-        transform: translate(-50%, -50%);
     }
 }
 

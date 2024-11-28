@@ -267,64 +267,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Get all necessary elements
     // Rename variables to avoid redeclaration
-    const hamburgerBtn = document.querySelector('.hamburger');
-    const mobileMenuModal = document.querySelector('.mobile-menu-modal');
-    const closeButton = document.querySelector('.mobile-menu-close');
-    const bodyElement = document.body;
-
-    // Function to open menu
-    function openMenu() {
-        if (mobileMenu) {
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu-modal');
+        const closeBtn = document.querySelector('.mobile-menu-close');
+        const body = document.body;
+    
+        // Toggle mobile menu
+        hamburger?.addEventListener('click', () => {
             mobileMenu.classList.add('active');
             body.style.overflow = 'hidden';
-        }
-    }
-
-    // Function to close menu
-    function closeMenu() {
-        if (mobileMenu) {
+        });
+    
+        // Close menu function
+        function closeMenu() {
             mobileMenu.classList.remove('active');
             body.style.overflow = '';
         }
-    }
-
-    // Hamburger click event
-    if (hamburger) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openMenu();
-        });
-    }
-
-    // Close button click event
-    if (closeButton) {
-        closeButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeMenu();
-        });
-    }
-
-    // Close when clicking outside the menu
-    if (mobileMenu) {
-        mobileMenu.addEventListener('click', (e) => {
+    
+        // Close with X button
+        closeBtn?.addEventListener('click', closeMenu);
+    
+        // Close when clicking outside the menu
+        mobileMenu?.addEventListener('click', (e) => {
             if (e.target === mobileMenu) {
                 closeMenu();
             }
         });
-    }
-
-    // Close when clicking menu items
-    const menuItems = document.querySelectorAll('.mobile-menu-items a');
-    menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            closeMenu();
+    
+        // Close menu when clicking a link
+        const menuLinks = document.querySelectorAll('.mobile-menu-items a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeMenu();
-        }
+    
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
     });
 });
