@@ -1800,13 +1800,11 @@ h2, h3, p {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
+    overflow-y: auto;
 }
 
 .mobile-menu-modal.active {
-    display: flex;
+    display: block;
 }
 
 .mobile-menu-content {
@@ -1815,7 +1813,10 @@ h2, h3, p {
     border-radius: 15px;
     width: 90%;
     max-width: 300px;
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     animation: modalPop 0.3s ease;
 }
 
@@ -1840,8 +1841,8 @@ h2, h3, p {
     gap: 10px;
 }
 
-.mobile-menu-items a i {
-    font-size: 1.1rem;
+.mobile-menu-items a:active {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Login button specific style */
@@ -1870,18 +1871,35 @@ h2, h3, p {
 @keyframes modalPop {
     0% {
         opacity: 0;
-        transform: scale(0.95);
+        transform: translate(-50%, -45%);
     }
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .mobile-menu-content {
+        width: 85%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .mobile-menu-items {
+        padding-bottom: 10px;
     }
 }
 
 /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
     .mobile-menu-modal {
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
+        height: -webkit-fill-available;
+    }
+    
+    .mobile-menu-content {
+        transform: translate(-50%, -50%);
+        top: 50%;
     }
 }
