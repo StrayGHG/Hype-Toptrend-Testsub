@@ -9,8 +9,8 @@ function initializeMobileMenu() {
         if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
             const scrollY = window.scrollY;
             body.style.position = 'fixed';
-            body.style.top = `-${scrollY}px`;
             body.style.width = '100%';
+            body.style.top = `-${scrollY}px`;
         } else {
             body.style.overflow = 'hidden';
         }
@@ -33,15 +33,10 @@ function initializeMobileMenu() {
         unlockScroll();
     }
 
-    // Event Listeners
-    hamburger?.addEventListener('click', () => {
+    hamburger?.addEventListener('click', (e) => {
+        e.preventDefault();
         mobileMenu.classList.add('active');
         lockScroll();
-    });
-
-    closeBtn?.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        closeMenu();
     });
 
     closeBtn?.addEventListener('click', closeMenu);
@@ -52,31 +47,18 @@ function initializeMobileMenu() {
         }
     });
 
+    // Close menu when clicking a link
+    const menuLinks = document.querySelectorAll('.mobile-menu-items a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Prevent touchmove on modal when open (iOS scroll fix)
     mobileMenu?.addEventListener('touchmove', (e) => {
         if (e.target === mobileMenu) {
             e.preventDefault();
         }
     }, { passive: false });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
-            closeMenu();
-        }
-    });
-
-    // Handle iOS safe areas
-    const setIOSSafeAreas = () => {
-        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-            document.documentElement.style.setProperty(
-                '--safe-area-inset-top',
-                `${window.screen.height - window.innerHeight}px`
-            );
-        }
-    };
-
-    window.addEventListener('resize', setIOSSafeAreas);
-    setIOSSafeAreas();
 }
 
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initializeMobileMenu); 

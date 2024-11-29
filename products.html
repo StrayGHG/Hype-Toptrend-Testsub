@@ -14,6 +14,13 @@
             <h1>Hype-Toptrend</h1>
         </div>
         
+        <div class="nav-items">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html">Login</a>
+        </div>
+        
         <div class="hamburger">
             <span></span>
             <span></span>
@@ -44,7 +51,45 @@
         </aside>
 
         <section class="products-grid">
-            <!-- Products will be dynamically added here -->
+            <!-- Product Card 1 -->
+            <div class="product-card featured">
+                <div class="featured-badge">Featured</div>
+                <div class="product-image">
+                    <img src="Images/kenzo.png" alt="Kenzo Tiger Hoodie">
+                </div>
+                <div class="product-info">
+                    <h3>Kenzo Tiger Hoodie</h3>
+                    <p>Iconic Kenzo Tiger embroidered hoodie in premium cotton</p>
+                    <div class="product-price">$299.99</div>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="Images/NikeTN.webp" alt="Nike TN I Sneakers">
+                </div>
+                <div class="product-info">
+                    <h3>Nike TN I Sneakers</h3>
+                    <p>Stylish Nike Tuned Air I sneakers</p>
+                    <div class="product-price">$129.99</div>
+                    <button class="add-to-cart-btn" data-id="2">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="Images/NikeTN3.webp" alt="Nike TN III Sneakers">
+                </div>
+                <div class="product-info">
+                    <h3>Nike TN III Sneakers</h3>
+                    <p>Stylish Nike Tuned Air III sneakers</p>
+                    <div class="product-price">$139.99</div>
+                    <button class="add-to-cart-btn" data-id="3">Add to Cart</button>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -55,6 +100,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     
     <!-- Your scripts -->
+    <script src="mobileMenu.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
     <script src="products.js"></script>
@@ -72,6 +118,19 @@
         </div>
     </div>
 
-    <script src="mobileMenu.js"></script>
+    <!-- Add to Cart Success Modal -->
+    <div class="cart-success-modal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Added to Cart!</h3>
+            <p>Item has been successfully added to your cart.</p>
+            <div class="success-buttons">
+                <button class="continue-shopping">Continue Shopping</button>
+                <button class="go-to-cart">Go to Cart</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
